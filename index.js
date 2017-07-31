@@ -2,14 +2,26 @@ const path = require('path');
 const glob = require('glob');
 const nodeModules = path.resolve('node_modules');
 
-module.exports = (
-  { helpers = true, polyfill = true, regenerator = true } = {}
-) => ({
+module.exports = ({ helpers, polyfill, regenerator } = {}) => ({
   name: 'babel-runtime-external',
   options(opts) {
+    const isAmdIifeOrUmd = (opts.targets || [opts])
+      .some(({ format }) => ['amd', 'iife', 'umd'].includes(format));
     let external = [];
     let paths = [];
     let ids = [];
+
+    if (helpers == undefined) {
+      helpers = !isAmdIifeOrUmd;
+    }
+
+    if (polyfill == undefined) {
+      polyfill = !isAmdIifeOrUmd;
+    }
+
+    if (regenerator == undefined) {
+      regenerator = !isAmdIifeOrUmd;
+    }
 
     if (helpers) {
       paths = paths.concat(

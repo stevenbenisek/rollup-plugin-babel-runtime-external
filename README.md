@@ -62,12 +62,12 @@ export default {
 
 #### `helpers`
 
-`boolean`: defaults to `true`.
+`boolean`: defaults to `true` if the bundle [format](https://github.com/rollup/rollup/wiki/JavaScript-API#format) is `cjs` or `es`; `false` otherwise.
 
 #### `polyfill`
 
-`boolean`: defaults to `true`.
+`boolean`: defaults to `true` if the bundle [format](https://github.com/rollup/rollup/wiki/JavaScript-API#format) is `cjs` or `es`; `false` otherwise.
 
 #### `regenerator`
 
-`boolean`: defaults to `true`.
+`boolean`: defaults to `true` if the bundle [format](https://github.com/rollup/rollup/wiki/JavaScript-API#format) is `cjs` or `es`; `false` otherwise.
