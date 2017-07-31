@@ -1,6 +1,6 @@
 {
   "name": "rollup-plugin-babel-runtime-external",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Rollup plugin to automatically exclude babel-runtime from your bundle",
   "main": "index.js",
   "scripts": {
@@ -27,7 +27,6 @@
     "rollup": "^0.45.2"
   },
   "dependencies": {
-    "glob": "^7.1.2",
-    "safe-resolve": "^1.0.0"
+    "glob": "^7.1.2"
   }
 }

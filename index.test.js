@@ -7,19 +7,19 @@ describe('babelRuntimeExternal(options)', () => {
 
   it('should add helpers by default', () => {
     expect(babelRuntimeExternal().options({}).external).toContain(
-      require.resolve('babel-runtime/helpers/classCallCheck')
+      'babel-runtime/helpers/classCallCheck'
     );
   });
 
   it('should add polyfills by default', () => {
     expect(babelRuntimeExternal().options({}).external).toContain(
-      require.resolve('babel-runtime/core-js/object/assign')
+      'babel-runtime/core-js/object/assign'
     );
   });
 
   it('should add regenerator by default', () => {
     expect(babelRuntimeExternal().options({}).external).toContain(
-      require.resolve('babel-runtime/regenerator')
+      'babel-runtime/regenerator/index'
     );
   });
 
@@ -28,7 +28,7 @@ describe('babelRuntimeExternal(options)', () => {
       babelRuntimeExternal({
         helpers: false,
       }).options({}).external
-    ).not.toContain(require.resolve('babel-runtime/helpers/classCallCheck'));
+    ).not.toContain('babel-runtime/helpers/classCallCheck');
   });
 
   it('should handle disabling polyfills', () => {
@@ -36,7 +36,7 @@ describe('babelRuntimeExternal(options)', () => {
       babelRuntimeExternal({
         polyfill: false,
       }).options({}).external
-    ).not.toContain(require.resolve('babel-runtime/core-js/object/assign'));
+    ).not.toContain('babel-runtime/core-js/object/assign');
   });
 
   it('should handle disabling regenerator', () => {
@@ -44,7 +44,7 @@ describe('babelRuntimeExternal(options)', () => {
       babelRuntimeExternal({
         regenerator: false,
       }).options({}).external
-    ).not.toContain(require.resolve('babel-runtime/regenerator'));
+    ).not.toContain('babel-runtime/regenerator/index');
   });
 
   it('should handle extending external function', () => {
@@ -55,15 +55,9 @@ describe('babelRuntimeExternal(options)', () => {
     expect(typeof external).toEqual('function');
     expect(external.length).toEqual(1);
     expect(external('path/to/module')).toEqual(true);
-    expect(
-      external(require.resolve('babel-runtime/helpers/classCallCheck'))
-    ).toEqual(true);
-    expect(
-      external(require.resolve('babel-runtime/core-js/object/assign'))
-    ).toEqual(true);
-    expect(external(require.resolve('babel-runtime/regenerator'))).toEqual(
-      true
-    );
+    expect(external('babel-runtime/helpers/classCallCheck')).toEqual(true);
+    expect(external('babel-runtime/core-js/object/assign')).toEqual(true);
+    expect(external('babel-runtime/regenerator/index')).toEqual(true);
   });
 
   it('should handle extending external array', () => {
@@ -72,19 +66,19 @@ describe('babelRuntimeExternal(options)', () => {
     };
 
     expect(babelRuntimeExternal().options(options).external).toContain(
-      require.resolve('module')
+      'module'
     );
 
     expect(babelRuntimeExternal().options(options).external).toContain(
-      require.resolve('babel-runtime/helpers/classCallCheck')
+      'babel-runtime/helpers/classCallCheck'
     );
 
     expect(babelRuntimeExternal().options(options).external).toContain(
-      require.resolve('babel-runtime/core-js/object/assign')
+      'babel-runtime/core-js/object/assign'
     );
 
     expect(babelRuntimeExternal().options(options).external).toContain(
-      require.resolve('babel-runtime/regenerator')
+      'babel-runtime/regenerator/index'
     );
   });
 });

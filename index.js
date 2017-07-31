@@ -1,6 +1,6 @@
 const path = require('path');
 const glob = require('glob');
-const safeResolve = require('safe-resolve');
+const nodeModules = path.resolve('node_modules');
 
 module.exports = (
   { helpers = true, polyfill = true, regenerator = true } = {}
@@ -9,37 +9,41 @@ module.exports = (
   options(opts) {
     let external = [];
     let paths = [];
+    let ids = [];
 
     if (helpers) {
       paths = paths.concat(
-        getFilePaths(path.resolve('node_modules', 'babel-runtime', 'helpers'))
+        getFilePaths(path.resolve(nodeModules, 'babel-runtime', 'helpers'))
       );
     }
 
     if (polyfill) {
       paths = paths.concat(
-        getFilePaths(path.resolve('node_modules', 'babel-runtime', 'core-js'))
+        getFilePaths(path.resolve(nodeModules, 'babel-runtime', 'core-js'))
       );
     }
 
     if (regenerator) {
       paths = paths.concat(
-        getFilePaths(
-          path.resolve('node_modules', 'babel-runtime', 'regenerator')
-        )
+        getFilePaths(path.resolve(nodeModules, 'babel-runtime', 'regenerator'))
       );
     }
 
+    ids = paths.map(getIdFromPath);
+
     if (typeof opts.external === 'function') {
-      external = id => opts.external(id) || paths.includes(id);
+      external = id => opts.external(id) || ids.includes(getIdFromPath(id));
     } else {
-      external = (opts.external || [])
-        .concat(paths.map(safeResolve).filter(Boolean));
+      external = (opts.external || []).concat(ids);
     }
 
     return Object.assign({}, opts, { external });
   },
 });
+
+function getIdFromPath(from) {
+  return from.replace(`${nodeModules}/`, '').replace(path.extname(from), '');
+}
 
 function getFilePaths(from) {
   return glob.sync('**/*.js', {
