@@ -1,5 +1,7 @@
 # rollup-plugin-babel-runtime-external
 
+[![Build Status](https://travis-ci.org/stevenbenisek/rollup-plugin-babel-runtime-external.svg?branch=master)](https://travis-ci.org/stevenbenisek/rollup-plugin-babel-runtime-external)
+
 > [Rollup](https://rollupjs.org/) plugin to automatically exclude [babel-runtime](https://babeljs.io/docs/plugins/transform-runtime/) from your bundle.
 
 ## Install
