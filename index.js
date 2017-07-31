@@ -33,9 +33,8 @@ module.exports = (
     if (typeof opts.external === 'function') {
       external = id => opts.external(id) || paths.includes(id);
     } else {
-      external = id =>
-        (opts.external || []).map(safeResolve).filter(Boolean).includes(id) ||
-        paths.includes(id);
+      external = (opts.external || [])
+        .concat(paths.map(safeResolve).filter(Boolean));
     }
 
     return Object.assign({}, opts, { external });
