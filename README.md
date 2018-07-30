@@ -18,7 +18,7 @@ npm install --save-dev rollup-plugin-babel-runtime-external
 import babelRuntimeExternal from 'rollup-plugin-babel-runtime-external';
 
 export default {
-  entry: 'index.js',
+  input: 'index.js',
   plugins: [babelRuntimeExternal()],
 };
 ```
@@ -29,7 +29,7 @@ export default {
 import babelRuntimeExternal from 'rollup-plugin-babel-runtime-external';
 
 export default {
-  entry: 'index.js',
+  input: 'index.js',
   plugins: [
     babelRuntimeExternal({
       helpers: false,
@@ -48,7 +48,7 @@ export default {
 import babelRuntimeExternal from 'rollup-plugin-babel-runtime-external';
 
 export default {
-  entry: 'index.js',
+  input: 'index.js',
   external: ['react'],
   plugins: [babelRuntimeExternal()],
 };
