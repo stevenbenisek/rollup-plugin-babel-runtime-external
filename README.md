@@ -19,9 +19,7 @@ import babelRuntimeExternal from 'rollup-plugin-babel-runtime-external';
 
 export default {
   entry: 'index.js',
-  plugins: [
-    babelRuntimeExternal(),
-  ],
+  plugins: [babelRuntimeExternal()],
 };
 ```
 
@@ -52,9 +50,7 @@ import babelRuntimeExternal from 'rollup-plugin-babel-runtime-external';
 export default {
   entry: 'index.js',
   external: ['react'],
-  plugins: [
-    babelRuntimeExternal(),
-  ],
+  plugins: [babelRuntimeExternal()],
 };
 ```
 
@@ -62,12 +58,12 @@ export default {
 
 #### `helpers`
 
-`boolean`: defaults to `true` if the bundle [format](https://github.com/rollup/rollup/wiki/JavaScript-API#format) is `cjs` or `es`; `false` otherwise.
+`boolean`: defaults to `true`
 
 #### `polyfill`
 
-`boolean`: defaults to `true` if the bundle [format](https://github.com/rollup/rollup/wiki/JavaScript-API#format) is `cjs` or `es`; `false` otherwise.
+`boolean`: defaults to `true`
 
 #### `regenerator`
 
-`boolean`: defaults to `true` if the bundle [format](https://github.com/rollup/rollup/wiki/JavaScript-API#format) is `cjs` or `es`; `false` otherwise.
+`boolean`: defaults to `true`
